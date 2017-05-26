@@ -7,6 +7,8 @@ import {List2Component} from "./list2/list2.component";
 import {Detail1Component} from "./detail1/detail1.component";
 import {Detail2Component} from "./detail2/detail2.component";
 import {List3Component} from "./list3/list3.component";
+import {LoginGuard} from "./guard/login.guard";
+import {UnLoginGuard} from "./guard/unLogin.guard";
 
 const routes: Routes = [
     {
@@ -15,11 +17,11 @@ const routes: Routes = [
     {
       path: 'home',
       component: HomeComponent
-    },{
-    path:'chat',
-    component: List3Component,
-    outlet:'aux'
-  },
+    }, {
+      path: 'chat',
+      component: List3Component,
+      outlet: 'aux'
+    },
     {
       path: 'list',
       component: ListComponent,
@@ -30,7 +32,7 @@ const routes: Routes = [
         {
           path: 'update/:id', component: Detail2Component
         }
-      ]
+      ], canActivate: [LoginGuard],canDeactivate:[UnLoginGuard]
     }, {
       path: 'list2/:id',
       component: List2Component
@@ -43,7 +45,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers:[LoginGuard,UnLoginGuard]
 })
 export class AppRoutingModule {
 }

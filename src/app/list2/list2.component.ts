@@ -15,4 +15,10 @@ export class List2Component implements OnInit {
   //this.listid=this.routeInfo.snapshot.params['id'];//参数快照
   this.routeInfo.params.subscribe((params: Params) => this.listid=params['id']);//参数订阅
   }
+
+}
+
+export class Product{
+  constructor(public id:number,public name:string){
+  }
 }
