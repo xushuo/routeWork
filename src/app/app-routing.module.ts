@@ -9,6 +9,7 @@ import {Detail2Component} from "./detail2/detail2.component";
 import {List3Component} from "./list3/list3.component";
 import {LoginGuard} from "./guard/login.guard";
 import {UnLoginGuard} from "./guard/unLogin.guard";
+import {ProductResolve} from "./guard/productResolve";
 
 const routes: Routes = [
     {
@@ -35,7 +36,10 @@ const routes: Routes = [
       ], canActivate: [LoginGuard],canDeactivate:[UnLoginGuard]
     }, {
       path: 'list2/:id',
-      component: List2Component
+      component: List2Component,
+      resolve:{
+        product:ProductResolve
+      }
     }, {
       path: '**',
       component: ErrorComponent
@@ -46,7 +50,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers:[LoginGuard,UnLoginGuard]
+  providers:[LoginGuard,UnLoginGuard,ProductResolve]
 })
 export class AppRoutingModule {
 }
