@@ -1,4 +1,11 @@
 <h1>
   {{title}}
 </h1>
+<a [routerLink]="['/']">主页</a>
+<a [routerLink]="['/list']" [queryParams]="{id:1}">详情列表1</a>
+<a [routerLink]="['/list2',2222]">详情列表2</a>
+<input type="button" value="详情列表" (click)="toList()">
+<a [routerLink]="[{outlets:{aux:'chat'}}]">显示聊天</a>
+<a [routerLink]="[{outlets:{aux:null}}]">关闭聊天</a>
 <router-outlet></router-outlet>
+<router-outlet name="aux"></router-outlet>
